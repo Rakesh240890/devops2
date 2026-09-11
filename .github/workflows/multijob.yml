@@ -1,3 +1,4 @@
+
 name: Multi Job CI Pipeline
 
 on:
@@ -35,16 +36,17 @@ jobs:
           name: build-file
 
       - name: Test Build
+        run: |
+          echo "Testing application..."
           cat build.txt
+          grep "Build completed" build.txt
 
   deploy:
     needs: test
+    runs-on: ubuntu-latest
 
+    steps:
       - name: Deploy Application
         run: |
           echo "Deployment started..."
-          echo "Application deployed successfully"    steps:
-    runs-on: ubuntu-latest
-          grep "Build completed" build.txt
-          echo "Testing application..."
-
+          echo "Application deployed successfully"
